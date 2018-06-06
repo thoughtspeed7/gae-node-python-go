@@ -1,0 +1,21 @@
+# om namah shivay
+
+# See https://cloud.google.com/appengine/docs/flexible/python/configuring-your-app-with-app-yaml
+# and https://cloud.google.com/appengine/docs/flexible/python/reference/app-yaml for more info
+
+runtime: python
+runtime_config:
+  python_version: 3
+env: flex
+service: python
+entrypoint: gunicorn -b :$PORT hello:app
+
+# The settings below are to reduce costs during testing and not appropriate for production use.
+# You would obviously want to increase the values for computing resources and look into auto scaling when running production workloads.
+
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
